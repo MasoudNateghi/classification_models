@@ -1,6 +1,7 @@
 import os
 import collections
 
+from keras_applications import imagenet_utils
 
 from ._common_blocks import ChannelSE
 from .. import get_submodules_from_kwargs
@@ -383,7 +384,8 @@ def SEResNet34(input_shape=None, input_tensor=None, weights=None, classes=1000, 
 
 
 def preprocess_input(x, **kwargs):
-    return x
+    return imagenet_utils.preprocess_input(x, mode='torch', **kwargs)
+
 
 
 setattr(ResNet18, '__doc__', ResNet.__doc__)

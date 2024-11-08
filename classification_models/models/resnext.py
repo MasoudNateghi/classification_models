@@ -1,6 +1,8 @@
 import os
 import collections
 
+from keras_applications import imagenet_utils
+
 from classification_models import get_submodules_from_kwargs
 from ._common_blocks import GroupConv2D
 from ..weights import load_model_weights
@@ -274,7 +276,7 @@ def ResNeXt101(input_shape=None, input_tensor=None, weights=None, classes=1000, 
 
 
 def preprocess_input(x, **kwargs):
-    return x
+    return imagenet_utils.preprocess_input(x, mode='torch', **kwargs)
 
 
 setattr(ResNeXt50, '__doc__', ResNeXt.__doc__)
